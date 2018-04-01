@@ -24,3 +24,20 @@ core是jQuery的核心模块。它定义了jQuery，并且在jQuery和jQuery原�
 - 把core.js的依赖拷贝过来
 - jquery.js中放开对global的注释，为了暴露jQuery到全局环境中
 
+#### selector
+选择器，现在jQuery的选择器用的是sizzle，所以暂时不去讨论选择器了
+
+```
+
+jQuery.find = Sizzle;
+jQuery.expr = Sizzle.selectors;
+
+// Deprecated
+jQuery.expr[ ":" ] = jQuery.expr.pseudos;
+jQuery.uniqueSort = jQuery.unique = Sizzle.uniqueSort;
+jQuery.text = Sizzle.getText;
+jQuery.isXMLDoc = Sizzle.isXML;
+jQuery.contains = Sizzle.contains;
+jQuery.escapeSelector = Sizzle.escape;
+
+```

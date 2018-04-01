@@ -1,6 +1,6 @@
 define( [
 	"./core",
-	// "./selector",
+	"./selector",
 	// "./traversing",
 	// "./callbacks",
 	// "./deferred",
