@@ -1,1 +1,17 @@
 "# myjquery" 
+通过自己构建jQuery来学习jQuery源码，力求搞懂其中每一句代码，学习它的编程思想！
+
+## basic-build
+基本构建过程，是对原来jQuery构建过程的简化，把其中除了build之外的所有任务都先注释掉！
+
+- 创建一个目录，用于我们的myjquery项目
+- cd myjquery & npm init -y
+- 创建src、build、dist目录，mkdir src build dist
+- 拷贝Gruntfile.js，注释掉除了build之外的所有构建代码
+- 拷贝build/tasks/build.js
+- 安装所需npm包，npm install --save-dev grunt grunt-load-tasks insight strip-json-comments requirejs
+- 全局安装grunt-cli，npm install -g grunt-cli
+- 拷贝src/jquery.js，src/wrapper.js过来
+- 注释掉src/jquery.js中的依赖引入代码
+
+其实insight是用来统计用户使用自定义构建的数据，不过暂时我们并不需要，当然了，放着也不影响，所以这里就没有注释掉它。
