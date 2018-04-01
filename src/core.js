@@ -1,135 +1,33 @@
-/*!
- * jQuery JavaScript Library v1.0.0
- * https://jquery.com/
- *
- * Includes Sizzle.js
- * https://sizzlejs.com/
- *
- * Copyright JS Foundation and other contributors
- * Released under the MIT license
- * https://jquery.org/license
- *
- * Date: 2018-04-01T08:34Z
- */
-( function( global, factory ) {
-
-	"use strict";
-
-	if ( typeof module === "object" && typeof module.exports === "object" ) {
-
-		// For CommonJS and CommonJS-like environments where a proper `window`
-		// is present, execute the factory and get jQuery.
-		// For environments that do not have a `window` with a `document`
-		// (such as Node.js), expose a factory as module.exports.
-		// This accentuates the need for the creation of a real `window`.
-		// e.g. var jQuery = require("jquery")(window);
-		// See ticket #14549 for more info.
-		module.exports = global.document ?
-			factory( global, true ) :
-			function( w ) {
-				if ( !w.document ) {
-					throw new Error( "jQuery requires a window with a document" );
-				}
-				return factory( w );
-			};
-	} else {
-		factory( global );
-	}
-
-// Pass this if window is not defined yet
-} )( typeof window !== "undefined" ? window : this, function( window, noGlobal ) {
-
-// Edge <= 12 - 13+, Firefox <=18 - 45+, IE 10 - 11, Safari 5.1 - 9+, iOS 6 - 9.1
-// throw exceptions when non-strict code (e.g., ASP.NET 4.5) accesses strict mode
-// arguments.callee.caller (trac-13335). But as of jQuery 3.0 (2016), strict mode should be common
-// enough that all such attempts are guarded in a try block.
-"use strict";
-
-var arr = [];
-
-var document = window.document;
-
-var getProto = Object.getPrototypeOf;
-
-var slice = arr.slice;
-
-var concat = arr.concat;
-
-var push = arr.push;
-
-var indexOf = arr.indexOf;
-
-var class2type = {};
-
-var toString = class2type.toString;
-
-var hasOwn = class2type.hasOwnProperty;
-
-var fnToString = hasOwn.toString;
-
-var ObjectFunctionString = fnToString.call( Object );
-
-var support = {};
-
-var isFunction = function isFunction( obj ) {
-
-      // Support: Chrome <=57, Firefox <=52
-      // In some browsers, typeof returns "function" for HTML <object> elements
-      // (i.e., `typeof document.createElement( "object" ) === "function"`).
-      // We don't want to classify *any* DOM node as a function.
-      return typeof obj === "function" && typeof obj.nodeType !== "number";
-  };
-
-
-var isWindow = function isWindow( obj ) {
-		return obj != null && obj === obj.window;
-	};
-
-
-
-
-	var preservedScriptAttributes = {
-		type: true,
-		src: true,
-		noModule: true
-	};
-
-	function DOMEval( code, doc, node ) {
-		doc = doc || document;
-
-		var i,
-			script = doc.createElement( "script" );
-
-		script.text = code;
-		if ( node ) {
-			for ( i in preservedScriptAttributes ) {
-				if ( node[ i ] ) {
-					script[ i ] = node[ i ];
-				}
-			}
-		}
-		doc.head.appendChild( script ).parentNode.removeChild( script );
-	}
-
-
-function toType( obj ) {
-	if ( obj == null ) {
-		return obj + "";
-	}
-
-	// Support: Android <=2.3 only (functionish RegExp)
-	return typeof obj === "object" || typeof obj === "function" ?
-		class2type[ toString.call( obj ) ] || "object" :
-		typeof obj;
-}
 /* global Symbol */
 // Defining this global in .eslintrc.json would create a danger of using the global
 // unguarded in another place, it seems safer to define global only for this module
 
+define( [
+	"./var/arr",
+	"./var/document",
+	"./var/getProto",
+	"./var/slice",
+	"./var/concat",
+	"./var/push",
+	"./var/indexOf",
+	"./var/class2type",
+	"./var/toString",
+	"./var/hasOwn",
+	"./var/fnToString",
+	"./var/ObjectFunctionString",
+	"./var/support",
+	"./var/isFunction",
+	"./var/isWindow",
+	"./core/DOMEval",
+	"./core/toType"
+], function( arr, document, getProto, slice, concat, push, indexOf,
+	class2type, toString, hasOwn, fnToString, ObjectFunctionString,
+	support, isFunction, isWindow, DOMEval, toType ) {
 
+"use strict";
 
 var
-	version = "1.0.0",
+	version = "@VERSION",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -496,37 +394,6 @@ function isArrayLike( obj ) {
 	return type === "array" || length === 0 ||
 		typeof length === "number" && length > 0 && ( length - 1 ) in obj;
 }
-
-
-var
-
-	// Map over jQuery in case of overwrite
-	_jQuery = window.jQuery,
-
-	// Map over the $ in case of overwrite
-	_$ = window.$;
-
-jQuery.noConflict = function( deep ) {
-	if ( window.$ === jQuery ) {
-		window.$ = _$;
-	}
-
-	if ( deep && window.jQuery === jQuery ) {
-		window.jQuery = _jQuery;
-	}
-
-	return jQuery;
-};
-
-// Expose jQuery and $ identifiers, even in AMD
-// (#7102#comment:10, https://github.com/jquery/jquery/pull/557)
-// and CommonJS for browser emulators (#13566)
-if ( !noGlobal ) {
-	window.jQuery = window.$ = jQuery;
-}
-
-
-
 
 return jQuery;
 } );

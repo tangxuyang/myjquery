@@ -1,5 +1,5 @@
 define( [
-	// "./core",
+	"./core",
 	// "./selector",
 	// "./traversing",
 	// "./callbacks",
@@ -30,7 +30,7 @@ define( [
 	// "./dimensions",
 	// "./deprecated",
 	// "./exports/amd",
-	// "./exports/global"
+	"./exports/global"
 ], function( jQuery ) {
 
 "use strict";

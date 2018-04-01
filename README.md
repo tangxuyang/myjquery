@@ -15,3 +15,12 @@
 - 注释掉src/jquery.js中的依赖引入代码
 
 其实insight是用来统计用户使用自定义构建的数据，不过暂时我们并不需要，当然了，放着也不影响，所以这里就没有注释掉它。
+
+## core
+core是jQuery的核心模块。它定义了jQuery，并且在jQuery和jQuery原型上定义了一些我们常用的功能函数。
+
+- jquery.js中解开对core.js的注释
+- 把core.js拷贝过来
+- 把core.js的依赖拷贝过来
+- jquery.js中放开对global的注释，为了暴露jQuery到全局环境中
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="./dist/jquery.js"></script>
+	</head>
+	<body>
+		<script>
+			// 这个测试文件只测试jQuery core中的类方法 
+			
+			function assert(expr, msg){
+				if(expr){
+					console.log(msg);
+					assert.pass++;
+
+				}else{
+					console.error(msg);
+					assert.fail++;
+				}
+
+				assert.count++;
+			}
+			assert.count = 0;
+			assert.pass = 0;
+			assert.fail = 0;
+			assert.sumarize = function(){
+				console.log("total:",this.count, "pass:",this.pass, "fail:", this.fail);
+			};
+
+			// jQuery.extend
+			var obj = jQuery.extend({},{a:1},{b:2});
+			assert(obj.a === 1 && obj.b ===2, "jQuery.extend should copy all the left object into to the first object");
+
+
+
+
+			assert.sumarize();
+			
+		</script>
+	</body>
+</html>
