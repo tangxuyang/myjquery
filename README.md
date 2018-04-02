@@ -24,6 +24,8 @@ core是jQuery的核心模块。它定义了jQuery，并且在jQuery和jQuery原�
 - 把core.js的依赖拷贝过来
 - jquery.js中放开对global的注释，为了暴露jQuery到全局环境中
 
+这里提一下var目录，在阅读jQuery源码时，会发现好多模块有var目录，而这个目录里面每个文件也都不大，很多都是一句return。所有var目录里面的内容再build时都是经过特殊处理的，会变成一个var定义放到前头。要想了解整个build过程，需要对requirejs的r.js有一定的了解，这个我们也放到后面再研究吧。
+
 #### selector
 选择器，现在jQuery的选择器用的是sizzle，所以暂时不去讨论选择器了
 
