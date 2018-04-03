@@ -43,3 +43,85 @@ jQuery.contains = Sizzle.contains;
 jQuery.escapeSelector = Sizzle.escape;
 
 ```
+
+#### traversing
+遍历
+
+- 放开jquery.js中对traversing的依赖
+- 拷贝src/traversing.js
+- 拷贝traversing.js中所有的依赖
+
+
+traversing给jQuery的原型上添加了以下方法：
+- has
+- closest
+- index
+- add
+- addBack
+- parent
+- parents
+- parentsUntil
+- next
+- prev
+- nextAll
+- prevAll
+- nextUntil
+- prevUntil
+- siblings
+- children
+- contents
+- find
+- filter
+- is
+- not
+
+jQuery.fn.init函数也是在这个模块里面的。
+
+介绍一下traversing/var中三个文件：
+- dir.js  
+这是一个通用方法，用来沿着个方向遍历树，把途径的节点以数组方式返回。其中方向就是元素dom支持的一些属性：
+1. parentNode 往上遍历直至到顶（window，不包括window）
+2. nextSibling 后面的兄弟节点
+3. previousSibling 前面的兄弟节点
+
+这个过程中只会手机nodeType===1的节点
+
+- siblings.js
+返回指定元素的所有兄弟节点，包括前后
+
+它的实现思路是，遍历指定元素父元素的第一个元素的nextSibling属性
+
+- rneedsContext.js
+jQuery.expr.match.needsContext;
+
+我暂时还不知道这是什么鬼
+
+接下来让我们说一下traversing目录下的findFilter.js  
+它给jQuery原型添加了我们常用的方法：
+- find 在当前jQuery对象中寻找符合选择器的子元素  
+底层是调用Sizzle实现的，分别用到了Sizzle函数和Sizzle.contains函数  
+如果是字符串就调用Sizzle函数，如果是非字符串就调用Sizzle.contains函数
+
+- filter
+
+用到了winnow
+- not
+
+用到了winnow
+- is
+
+用到了winnow
+
+winnow是私有函数，并没有暴露到外面，只在这个模块里面。
+
+#### callbacks
+
+#### deferred
+
+#### deferred/exceptionHook
+
+#### core/ready
+
+#### data
+
+#### queue
