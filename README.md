@@ -115,8 +115,12 @@ jQuery.expr.match.needsContext;
 winnow是私有函数，并没有暴露到外面，只在这个模块里面。
 
 #### callbacks
+回调模块，是一个相对独立的模块，提供了一个管理回调列表的功能。
+
+jQuery.Callbacks()创建一个管理回调列表的对象。可以add、remove、fire、lock、disable等操作！
 
 #### deferred
+
 
 #### deferred/exceptionHook
 
