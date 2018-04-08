@@ -6,7 +6,7 @@ define( [
 	// "./deferred",
 	// "./deferred/exceptionHook",
 	// "./core/ready",
-	// "./data",
+	"./data",
 	// "./queue",
 	// "./queue/delay",
 	// "./attributes",
