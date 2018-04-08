@@ -17,7 +17,7 @@ define( [
 	// "./wrap",
 	// "./css",
 	// "./css/hiddenVisibleSelectors",
-	// "./serialize",
+	"./serialize",
 	// "./ajax",
 	// "./ajax/xhr",
 	// "./ajax/script",

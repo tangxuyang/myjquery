@@ -129,3 +129,10 @@ jQuery.Callbacks()创建一个管理回调列表的对象。可以add、remove�
 #### data
 
 #### queue
+
+
+#### serialize
+序列化，把对象、jQuery对象、元素数组转换成name/value的数组、query string。
+- jQuery.fn.serializeArray() jQuery对象(form或form control)转换成name/value数组
+- jQuery.fn.serialize() jQuery对象(form或form control)转换成query string
+- jQuery.param jQuery对象、普通对象、数组(name/value)转换成query string
