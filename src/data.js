@@ -21,6 +21,14 @@ define( [
 var rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,
 	rmultiDash = /[A-Z]/g;
 
+// 把字符串转换成相应的类型
+// "true" -> true
+// "false" -> false
+// "null" -> null
+// "数字" -> 数字
+// "{}" -> {}
+// "[]" -> []
+// 原样返回字符串
 function getData( data ) {
 	if ( data === "true" ) {
 		return true;
@@ -35,10 +43,12 @@ function getData( data ) {
 	}
 
 	// Only convert to a number if it doesn't change the string
+	// 这里的方法可以借鉴，我记得我曾经也用过类似的方式，我当时没用+data，而是调用了parseInt
 	if ( data === +data + "" ) {
 		return +data;
 	}
 
+	// 数组或对象的字符串调用JSON.parse
 	if ( rbrace.test( data ) ) {
 		return JSON.parse( data );
 	}
@@ -51,7 +61,9 @@ function dataAttr( elem, key, data ) {
 
 	// If nothing was found internally, try to fetch any
 	// data from the HTML5 data-* attribute
+	// data === undefined表示这个是get, nodeType===1表示是DOM元素	
 	if ( data === undefined && elem.nodeType === 1 ) {
+		// 把驼峰变成中划线的格式，看来正则真的很强大
 		name = "data-" + key.replace( rmultiDash, "-$&" ).toLowerCase();
 		data = elem.getAttribute( name );
 
@@ -100,10 +112,12 @@ jQuery.fn.extend( {
 			attrs = elem && elem.attributes;
 
 		// Gets all values
+		// 没有指定key，认为是要获取全部的data数据
 		if ( key === undefined ) {
-			if ( this.length ) {
-				data = dataUser.get( elem );
+			if ( this.length ) {// 当前jQuery对象中有元素
+				data = dataUser.get( elem );// 获取第一个元素中的数据
 
+				// ELEMENT_NODE并且还没访问过该元素的data，读取这个元素的attributes，它其中data-的属性拷贝放到data中
 				if ( elem.nodeType === 1 && !dataPriv.get( elem, "hasDataAttrs" ) ) {
 					i = attrs.length;
 					while ( i-- ) {
@@ -132,6 +146,7 @@ jQuery.fn.extend( {
 			} );
 		}
 
+		// 设置单个值，或获取单个值
 		return access( this, function( value ) {
 			var data;
 
@@ -166,7 +181,7 @@ jQuery.fn.extend( {
 				// We always store the camelCased key
 				dataUser.set( this, key, value );
 			} );
-		}, null, value, arguments.length > 1, null, true );
+		}, null, value, arguments.length > 1/*决定是否可连缀chainable*/, null/*emptyGet*/, true/*raw*/ );
 	},
 
 	removeData: function( key ) {

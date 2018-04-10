@@ -1,8 +1,8 @@
 define( [
 	"./core",
 	"./selector",
-	"./traversing",
-	"./callbacks",
+	//"./traversing",
+	//"./callbacks",
 	// "./deferred",
 	// "./deferred/exceptionHook",
 	// "./core/ready",
