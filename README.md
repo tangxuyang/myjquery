@@ -127,5 +127,34 @@ jQuery.Callbacks()创建一个管理回调列表的对象。可以add、remove�
 #### core/ready
 
 #### data
+Data模块是一个相对独立的模块。它用来把数据存到目标对象中。Data对象本身是不存储任何数据的，除了它的expando，一个全局唯一的字符串。它会把要存储的数据存放到目标对象的以expando为名字的字段里。
+
+它支持普通的对象，也支持两种DOM节点，ELEMENT_NODE(1)和DOCUMENT_NODE(9)。
+
+提供了以下几个实例方法：
+- cache(owner)，返回目标对象上关联的数据，如果该目标对象上没有，则创建一个空对象，绑定到目标对象上，并返回这个对象
+- set(owner, data, value)，设置指定key，即data，的值为value。如果data是字符串，就是单个设置，如果data是对象，就是批量设置
+- get(owner, key)，获取指定key的值，如果key不传，则返回的是全部数据对象
+- access(owner, key, value)封装了set和get
+- remove(owner, key)，删除指定key，如果key不传，则删除整个数据对象
+- hasData(owner),判断目标owner上是否有数据对象
+
+jQuery闭包内部创建了两个Data的对象，分别是dataUser和dataPriv   
+借助这两个Data对象，jQuery在jQuery和jQuery.fn上暴露了一些方法  
+
+jQuery上方法：
+- hasData(elem)，判断elem上是否有data，通过调用dataUser.hasData和dataPriv.hasData来实现
+- data(elem,name,data)，调用dataUser.access(elem, name, data)
+- removeData(elem, name),调用dataUser.remove(elem,name)
+- _data(elem, name, data)，调用dataPriv.access(elem, name, data)
+- _removeData(elem, name, data),调用dataPriv.remove(elem, name)
+
+
+jQuery.fn上的方法：
+- data(key, value) 获取或设置
+- removeData(key)，调用dataUser.remove(this, key)
+
+
+Data模块中使用了一个私有函数access（src/core/access.js），我只能说这个函数真的很复杂，而且被好多模块都用过。只能见过一次调用熟悉一次，次数多了也就熟悉了。
 
 #### queue
