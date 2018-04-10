@@ -155,4 +155,6 @@ jQuery.fn上的方法：
 - removeData(key)，调用dataUser.remove(this, key)
 
 
+Data模块中使用了一个私有函数access（src/core/access.js），我只能说这个函数真的很复杂，而且被好多模块都用过。只能见过一次调用熟悉一次，次数多了也就熟悉了。
+
 #### queue
